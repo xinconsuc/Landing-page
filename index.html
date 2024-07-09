@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exclusive Offers on Indulgent Foods</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GOOGLE_ANALYTICS_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'YOUR_GOOGLE_ANALYTICS_ID');
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="headline">Get Exclusive Offers on Delicious Indulgent Foods!</h1>
+        <p class="subheadline">Sign up now to receive exclusive deals, recipes, and tips on your favorite indulgent foods.</p>
+        <div class="images">
+            <img src="images/indulgent_food1.jpg" alt="Indulgent Food 1">
+            <img src="images/indulgent_food2.jpg" alt="Indulgent Food 2">
+            <img src="images/indulgent_food3.jpg" alt="Indulgent Food 3">
+        </div>
+        <form action="submit_form.php" method="POST" onsubmit="return trackConversion()">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <button type="submit" class="cta-button">Get Exclusive Offers</button>
+        </form>
+        <div class="benefits">
+            <h3>Why Sign Up?</h3>
+            <ul>
+                <li>Exclusive Discounts on Your Favorite Treats</li>
+                <li>Delicious Recipes Delivered to Your Inbox</li>
+                <li>Early Access to New Products and Offers</li>
+            </ul>
+        </div>
+        <p class="privacy">We respect your privacy. Your email address will be kept confidential and will only be used to send you exclusive offers and updates.</p>
+    </div>
+
+    <!-- Google Ads Conversion Tracking -->
+    <script>
+      function trackConversion() {
+        gtag('event', 'conversion', {
+          'send_to': 'YOUR_GOOGLE_ADS_CONVERSION_ID'
+        });
+        return true;
+      }
+    </script>
+</body>
+</html>
