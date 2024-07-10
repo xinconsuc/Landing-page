@@ -5,13 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exclusive Offers on Indulgent Foods</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GOOGLE_ANALYTICS_ID"></script>
+    <!-- Global site tag (gtag.js) - Google Ads: YOUR_GOOGLE_ADS_ID -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GOOGLE_ADS_ID"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'YOUR_GOOGLE_ANALYTICS_ID');
+      gtag('config', 'YOUR_GOOGLE_ADS_ID');
+    </script>
+    <!-- Include script to get URL parameters -->
+    <script>
+      function getUrlParameter(name) {
+          name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+          var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+          var results = regex.exec(location.search);
+          return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+      }
+
+      function trackFormSubmit(event) {
+          var campaign = getUrlParameter('campaign');
+          document.getElementById('campaign').value = campaign;
+      }
     </script>
 </head>
 <body>
@@ -23,10 +37,11 @@
             <img src="images/indulgent_food2.jpg" alt="Indulgent Food 2">
             <img src="images/indulgent_food3.jpg" alt="Indulgent Food 3">
         </div>
-        <form action="submit_form.php" method="POST" onsubmit="return trackConversion()">
+        <form action="https://formspree.io/f/xzzpzpgd" method="POST" onsubmit="trackFormSubmit(event)">
             <div class="form-group">
                 <label for="email">Email Address</label>
                 <input type="email" id="email" name="email" required>
+                <input type="hidden" id="campaign" name="campaign" value="">
             </div>
             <button type="submit" class="cta-button">Get Exclusive Offers</button>
         </form>
@@ -40,14 +55,32 @@
         </div>
         <p class="privacy">We respect your privacy. Your email address will be kept confidential and will only be used to send you exclusive offers and updates.</p>
     </div>
-
-    <!-- Google Ads Conversion Tracking -->
+    <!-- Event snippet for Campaign 1 conversion page -->
     <script>
-      function trackConversion() {
+      function trackConversion1() {
         gtag('event', 'conversion', {
-          'send_to': 'YOUR_GOOGLE_ADS_CONVERSION_ID'
+            'send_to': 'AW-YOUR_GOOGLE_ADS_ID/CONVERSION_LABEL_1'
         });
-        return true;
+      }
+    </script>
+    <!-- Event snippet for Campaign 2 conversion page -->
+    <script>
+      function trackConversion2() {
+        gtag('event', 'conversion', {
+            'send_to': 'AW-YOUR_GOOGLE_ADS_ID/CONVERSION_LABEL_2'
+        });
+      }
+    </script>
+    <!-- Track form submission based on URL parameter -->
+    <script>
+      function trackFormSubmit(event) {
+          var campaign = getUrlParameter('campaign');
+          document.getElementById('campaign').value = campaign;
+          if (campaign === 'campaign1') {
+              trackConversion1();
+          } else if (campaign === 'campaign2') {
+              trackConversion2();
+          }
       }
     </script>
 </body>
